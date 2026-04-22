@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cade Eberhardt | Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+    :root {
+      --navy: #1b2a4a;
+      --navy-dark: #111c30;
+      --gold: #b8921a;
+      --gold-light: #d4a832;
+      --cream: #f9f8f6;
+    }
+
+    body { font-family: 'DM Sans', sans-serif; color: #2c2c2c; background: #fff; }
+
+    /* NAVBAR */
+    .navbar { background-color: var(--navy-dark) !important; }
+    .navbar-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: #fff !important;
+      letter-spacing: 0.04em;
+    }
+    .nav-link { color: rgba(255,255,255,0.75) !important; font-size: 0.9rem; }
+    .nav-link:hover { color: var(--gold-light) !important; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+      color: white;
+      padding: 7rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(184,146,26,0.07);
+      top: -100px;
+      right: -100px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .gold-text { color: var(--gold-light); }
+    .hero .subtitle {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .hero-badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.85);
+      padding: 0.3rem 0.85rem;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-gold {
+      background-color: var(--gold);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 3px;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+    .btn-gold:hover { background-color: var(--gold-light); color: #fff; }
+
+    .btn-outline-gold {
+      border: 1px solid rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.85);
+      padding: 0.7rem 1.8rem;
+      border-radius: 3px;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline-gold:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+    /* STATS BAR */
+    .stats-bar {
+      background-color: var(--navy);
+      color: white;
+      padding: 1.5rem 0;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--gold-light);
+      font-weight: 700;
+      display: block;
+    }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* SECTIONS */
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+    .section-divider {
+      width: 50px;
+      height: 3px;
+      background-color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ABOUT */
+    .about-section { padding: 5rem 0; background: var(--cream); }
+    .about-icon-box {
+      background: white;
+      border-radius: 4px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.06);
+      height: 100%;
+    }
+    .about-icon { font-size: 2rem; color: var(--gold); margin-bottom: 0.7rem; display: block; }
+    .about-icon-box h5 { font-weight: 500; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .about-icon-box p { font-size: 0.85rem; color: #777; margin: 0; }
+
+    /* PAGES */
+    .pages-section { padding: 5rem 0; }
+    .page-card {
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .page-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      color: inherit;
+    }
+    .page-card-header {
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .page-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .page-card h4 { font-weight: 500; font-size: 1.05rem; color: var(--navy); margin: 0 0 0.2rem; }
+    .page-card p { font-size: 0.85rem; color: #888; margin: 0; }
+    .page-card-body { padding: 0 2rem 1.5rem; font-size: 0.88rem; color: #555; line-height: 1.6; }
+    .page-card-footer {
+      padding: 1rem 2rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    /* TIMELINE */
+    .timeline-section { padding: 5rem 0; background: var(--cream); }
+    .timeline-item { display: flex; gap: 1.5rem; margin-bottom: 2rem; }
+    .timeline-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .timeline-line { width: 2px; background: rgba(0,0,0,0.08); flex-shrink: 0; }
+    .timeline-content h6 { font-weight: 500; color: var(--navy); margin-bottom: 0.2rem; }
+    .timeline-content small { color: var(--gold); font-size: 0.8rem; display: block; margin-bottom: 0.3rem; }
+    .timeline-content p { font-size: 0.88rem; color: #666; margin: 0; }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--navy-dark);
+      color: rgba(255,255,255,0.5);
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--gold-light); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Cade Eberhardt</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pages">Pages</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="resume.html">Résumé</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h1>Cade <span class="gold-text">Eberhardt</span></h1>
+          <p class="subtitle">Pre-Business · BYU Marriott School · Strategic Management Candidate</p>
+          <div class="hero-badges">
+            <span class="hero-badge"><i class="bi bi-geo-alt"></i> Provo, UT</span>
+            <span class="hero-badge"><i class="bi bi-mortarboard"></i> GPA 4.00</span>
+            <span class="hero-badge"><i class="bi bi-globe"></i> 35+ Countries</span>
+            <span class="hero-badge"><i class="bi bi-translate"></i> Portuguese Fluency</span>
+            <span class="hero-badge"><i class="bi bi-award"></i> Eagle Scout</span>
+          </div>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="resume.html" class="btn-gold">View Résumé</a>
+            <a href="folkrock.html" class="btn-outline-gold">Rock Music Passion Page →</a>
+          </div>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-center">
+          <div style="font-size: 8rem; opacity: 0.15;">🎓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-6 col-md-3 stat-item">
+          <span class="stat-number">4.00</span>
+          <span class="stat-label">GPA</span>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <span class="stat-number">35+</span>
+          <span class="stat-label">Countries Visited</span>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <span class="stat-number">240</span>
+          <span class="stat-label">Missionaries Mentored</span>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Languages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="section-divider"></div>
+      <div class="row mb-4">
+        <div class="col-lg-8">
+          <p style="font-size: 1.05rem; line-height: 1.8; color: #444;">
+            I'm a Pre-Business student at BYU's Marriott School of Business applying to the Strategic Management program. My path has been shaped by extraordinary experiences — leading logistics for 240 missionaries across Mozambique and South Africa, serving underserved communities in Malawi and Mexico, and traveling to over 35 countries to develop a genuine understanding of global business and culture.
+          </p>
+          <p style="font-size: 1.05rem; line-height: 1.8; color: #444; margin-top: 1rem;">
+            I'm drawn to strategy because I've lived it: making high-stakes decisions under pressure, building coalitions across cultures, and finding creative solutions when conventional resources aren't available.
+          </p>
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-md-3">
+          <div class="about-icon-box">
+            <span class="about-icon"><i class="bi bi-globe2"></i></span>
+            <h5>Global Perspective</h5>
+            <p>35+ countries, 2 languages, diverse cross-cultural experience</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="about-icon-box">
+            <span class="about-icon"><i class="bi bi-people"></i></span>
+            <h5>Leadership</h5>
+            <p>Managed teams of 240+ across multiple countries and cultures</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="about-icon-box">
+            <span class="about-icon"><i class="bi bi-graph-up-arrow"></i></span>
+            <h5>Business Acumen</h5>
+            <p>Business owner, active investor, Army Scholarship recipient</p>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="about-icon-box">
+            <span class="about-icon"><i class="bi bi-music-note-beamed"></i></span>
+            <h5>Passions</h5>
+            <p>Classic rock, skiing, swimming, baseball, and travel</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGES -->
+  <section class="pages-section" id="pages">
+    <div class="container">
+      <h2 class="section-title">Explore My Site</h2>
+      <div class="section-divider"></div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <a href="resume.html" class="page-card">
+            <div class="page-card-header">
+              <div class="page-card-icon" style="background:#eef1f8;">📄</div>
+              <div>
+                <h4>Résumé</h4>
+                <p>Professional background</p>
+              </div>
+            </div>
+            <div class="page-card-body">Education, leadership, work experience, and skills — all in one place.</div>
+            <div class="page-card-footer">View Résumé →</div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="folkrock.html" class="page-card">
+            <div class="page-card-header">
+              <div class="page-card-icon" style="background:#fdf3e3;">🎸</div>
+              <div>
+                <h4>Rock Music History</h4>
+                <p>Passion project page</p>
+              </div>
+            </div>
+            <div class="page-card-body">From CSNY to Led Zeppelin to Pink Floyd — the evolution of rock music and its modern legacy.</div>
+            <div class="page-card-footer">Explore the History →</div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="app.html" class="page-card">
+            <div class="page-card-header">
+              <div class="page-card-icon" style="background:#e8f4ea;">🎮</div>
+              <div>
+                <h4>Rock Legends Trivia</h4>
+                <p>AI-powered web app</p>
+              </div>
+            </div>
+            <div class="page-card-body">Test your knowledge with AI-generated trivia questions about rock's greatest bands and eras.</div>
+            <div class="page-card-footer">Play the Game →</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE TIMELINE -->
+  <section class="timeline-section" id="experience">
+    <div class="container">
+      <h2 class="section-title">Experience Highlights</h2>
+      <div class="section-divider"></div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h6>LDS Missionary — Maputo Mission</h6>
+              <small>Aug 2023 – Aug 2025 · Mozambique, South Africa, Oregon</small>
+              <p>Oversaw operations for 240 missionaries; directed large-scale relocation amid political crisis.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h6>Sales Representative — Anderson Attorney Services</h6>
+              <small>Aug – Nov 2025 · Provo, UT</small>
+              <p>Managed confidential legal documents and client communications.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h6>Business Owner — Lawn and Window LLC</h6>
+              <small>Mar 2021 – Jun 2023 · Bountiful, UT</small>
+              <p>Built and managed a small business with a loyal customer base.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h6>Humanitarian Service Leader — HXP</h6>
+              <small>Jun 2021 / Jul 2022 · Malawi, Mexico</small>
+              <p>Led international youth teams building schools and orphanages for underserved children.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h6>Eagle Scout — Boy Scouts of America</h6>
+              <small>Aug 2017 · Bountiful, UT</small>
+              <p>Led 50+ volunteers to clear 5 miles of mountain trails for community wildfire access.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h6>Active Trader — Personal Portfolio</h6>
+              <small>Aug 2025 – Present · Virtual</small>
+              <p>Managing $10,000+ investment portfolio focused on long-term growth and diversification.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom:0.5rem;">Cade Eberhardt &nbsp;·&nbsp; BYU Marriott School of Business &nbsp;·&nbsp; IS 201 Final Project</p>
+      <p>
+        <a href="resume.html">Résumé</a> &nbsp;|&nbsp;
+        <a href="folkrock.html">Rock History</a> &nbsp;|&nbsp;
+        <a href="app.html">Trivia App</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
